@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-class SettingsData {
-    @Published var dailyIntake = 0
-    @Published var goal: String = "One"
+class SettingsData: ObservableObject {
+    @Published var dailyIntake = AppDataAPI.dailyIntake
+    @Published var goal: String = AppDataAPI.goal
+    @Published var remindMe: String = AppDataAPI.remindMe
 }
 
 struct Settings: View {

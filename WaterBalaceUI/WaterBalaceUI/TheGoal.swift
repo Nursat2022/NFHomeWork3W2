@@ -30,7 +30,7 @@ struct TheGoal: View {
                 .font(.system(size: 36))
                 .fontWeight(.bold)
             
-            Buttons(selected: $selected)
+            Buttons()
             
             nextOrSaveButton(text: "Save", action: {})
         }

@@ -10,6 +10,15 @@ import Foundation
 struct AppDataAPI {
     @AppDataStorage(key: "isOnboarding", defaultValue: false)
     static var isOnboarding: Bool
+    
+    @AppDataStorage(key: "dailyIntake", defaultValue: 0)
+    static var dailyIntake: Int
+    
+    @AppDataStorage(key: "goal", defaultValue: "One")
+    static var goal: String
+    
+    @AppDataStorage(key: "remindMe", defaultValue: "15 min")
+    static var remindMe: String
 }
 
 @propertyWrapper

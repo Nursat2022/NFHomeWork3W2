@@ -9,16 +9,17 @@ import SwiftUI
 
 struct WhatIsYourGoal: View {
     @Binding var state: AppScreenState
-    @State var selected = "One"
+    @EnvironmentObject var settingsData: SettingsData
     @State var remindMe = false
     var body: some View {
         NavigationView {
             VStack {
                 Headers(text: "What is your goal?")
                 
-                Buttons(selected: $selected)
+                Buttons()
                 
                 nextOrSaveButton(text: "Next") {
+                    AppDataAPI.goal = settingsData.goal
                     remindMe = true
                 }
                 
@@ -34,14 +35,14 @@ struct WhatIsYourGoal: View {
 }
 
 struct Buttons: View {
-    @Binding var selected: String
+    @EnvironmentObject var settingsData: SettingsData
     var goals = ["One", "Two", "Three", "Four"]
     
     var body: some View {
         VStack {
             VStack(spacing: 14) {
                 ForEach(goals, id: \.self) { goal in
-                    Button(action: { selected = goal }) {
+                    Button(action: { settingsData.goal = goal }) {
                         HStack {
                             Text("Goal Number \(goal)")
                                 .fontWeight(.semibold)
@@ -51,8 +52,8 @@ struct Buttons: View {
                             ZStack {
                                 Circle().stroke(Color.blue, lineWidth: 2).frame(width: 20, height: 20)
                                 
-                                if selected == goal {
-                                    Circle().fill(selected == goal ? Color.blue :  Color.red).frame(width: 12, height: 12)
+                                if settingsData.goal == goal {
+                                    Circle().fill(settingsData.goal == goal ? Color.blue :  Color.red).frame(width: 12, height: 12)
                                 }
                             }
                         }

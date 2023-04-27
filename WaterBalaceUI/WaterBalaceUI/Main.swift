@@ -15,15 +15,8 @@ struct Main: View {
     @State var level: Int = 0
     @State var AddWaterIntake = false
     @EnvironmentObject var settingsData: SettingsData
+    @State var date = Date()
     
-//    init() {
-//        mx = AppDataAPI.dailyIntake
-//        self.ml = AppDataAPI.IntakeForToday
-//        self.level = Int(ceil(AppDataAPI.IntakeForToday/AppDataAPI.dailyIntake * 100))
-//        progress1 = CGFloat(level) / CGFloat(100)
-//        progress2 = CGFloat(level) / CGFloat(100)
-//    }
-//    @State var progress1: CGFloat = CGFloat(Int(ceil(AppDataAPI.IntakeForToday/AppDataAPI.dailyIntake * 100))) / CGFloat(100)
     @State var progress1: CGFloat = 0
     
     @State var phase1: CGFloat = 0.0
@@ -37,8 +30,9 @@ struct Main: View {
         switch level {
         case 0: return "Add your first drink for today"
         case 1...50: return "Great job!"
+        case 51...99: return "Almost there!"
         default:
-            return "Almost there!"
+            return "You have achieved your goal for today"
         }
     }
     
@@ -110,7 +104,8 @@ struct Main: View {
                                     }
                                 }
                             }
-                            Text("Monday, 25th of November")
+//                            Text("Monday, 25th of November")
+                            Text("\(date.dateToString())")
                         }
                         
                     }
@@ -125,7 +120,6 @@ struct Main: View {
                     
                     NavigationLink(isActive: $AddWaterIntake) {
                         WaterIntake()
-                            .navigationBarBackButtonHidden(true)
                     } label: {}
                 }
                 .onAppear {
@@ -207,6 +201,26 @@ struct waterWave: Shape {
     var animatableData: CGFloat {
         get {phase}
         set {phase = newValue}
+    }
+}
+
+extension Date {
+    
+    func dateToString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "EEEE, d'\(suffix())' 'of' MMMM"
+        return dateFormatter.string(from: self)
+    }
+    
+    func suffix() -> String {
+        let dayOfMonth = Calendar.current.component(.day, from: self)
+        switch dayOfMonth {
+        case 1, 21, 31: return "st"
+        case 2, 22: return "nd"
+        case 3, 23: return "rd"
+        default: return "th"
+        }
     }
 }
 

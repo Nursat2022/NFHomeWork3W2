@@ -10,7 +10,7 @@ import SwiftUI
 struct WaterIntake: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var settingsData: SettingsData
-    @State var volume = "\(String(format: "%.0f", AppDataAPI.dailyIntake))"
+    @State var volume = "0"
     var body: some View {
         VStack {
             Headers(text: "Water Intake")
@@ -21,7 +21,7 @@ struct WaterIntake: View {
                 self.presentationMode.wrappedValue.dismiss()
             })
         }
-        .navigationBarBackButtonHidden(true)
+//        .navigationBarBackButtonHidden(true)
         .padding(.top, 108)
         .padding(.bottom, 50)
         .ignoresSafeArea()

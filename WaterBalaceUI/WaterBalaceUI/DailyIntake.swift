@@ -10,13 +10,13 @@ import SwiftUI
 struct DailyIntake: View {
     @Binding var state: AppScreenState
     @EnvironmentObject var settingsData: SettingsData
-    @State var volume = "\(AppDataAPI.dailyIntake)"
+    @State var volume = "\(String(format: "%.0f", AppDataAPI.dailyIntake))"
     var body: some View {
         VStack {
             Headers(text: "Daily intake?")
             TextFieldForVolume(volume: $volume)
             nextOrSaveButton(text: "Save", action: {
-                AppDataAPI.dailyIntake = Int(volume) ?? 0
+                AppDataAPI.dailyIntake = Double(volume) ?? 0
                 settingsData.dailyIntake = AppDataAPI.dailyIntake
                 AppDataAPI.isOnboarding = true
                 withAnimation(.spring()) {

@@ -11,6 +11,7 @@ class SettingsData: ObservableObject {
     @Published var dailyIntake = AppDataAPI.dailyIntake
     @Published var goal: String = AppDataAPI.goal
     @Published var remindMe: Int = AppDataAPI.remindMe
+    @Published var IntakeForToday: Double = AppDataAPI.IntakeForToday
 }
 
 struct Settings: View {

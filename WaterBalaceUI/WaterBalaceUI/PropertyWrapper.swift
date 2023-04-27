@@ -12,13 +12,16 @@ struct AppDataAPI {
     static var isOnboarding: Bool
     
     @AppDataStorage(key: "dailyIntake", defaultValue: 0)
-    static var dailyIntake: Int
+    static var dailyIntake: Double
     
     @AppDataStorage(key: "goal", defaultValue: "One")
     static var goal: String
     
     @AppDataStorage(key: "remindMe", defaultValue: 15)
     static var remindMe: Int
+    
+    @AppDataStorage(key: "IntakeForToday", defaultValue: 0)
+    static var IntakeForToday: Double
 }
 
 @propertyWrapper

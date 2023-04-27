@@ -32,7 +32,7 @@ struct TheGoal: View {
             
             Buttons(selected: $selected)
             
-            nextOrSaveButton(text: "Save")
+            nextOrSaveButton(text: "Save", action: {})
         }
         .padding(.top, 56)
         .padding(.bottom, 50)

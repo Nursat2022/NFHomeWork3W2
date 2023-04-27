@@ -107,7 +107,9 @@ struct Main: View {
                 
                 Spacer()
                 
-                nextOrSaveButton(text: "Add")
+                nextOrSaveButton(text: "Add") {
+                    
+                }
             }
             .padding(.top, 14)
             .padding(.bottom, 20)
@@ -185,6 +187,6 @@ struct waterWave: Shape {
 
 struct Main_Previews: PreviewProvider {
     static var previews: some View {
-        Main(ml: 0)
+        Main(ml: 1.2)
     }
 }

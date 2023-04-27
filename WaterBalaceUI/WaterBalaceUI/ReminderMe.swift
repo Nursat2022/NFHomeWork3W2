@@ -17,7 +17,7 @@ struct ReminderMe: View {
             
             choiceGrid()
             
-            nextOrSaveButton(text: "Next")
+            nextOrSaveButton(text: "Next", action: {})
         }
         .padding(.top, 108)
         .padding(.bottom, 50)

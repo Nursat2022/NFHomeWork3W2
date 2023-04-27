@@ -32,7 +32,7 @@ struct WaterIntake: View {
                 .fontWeight(.bold)
             
             TextFieldForVolume(volume: $volume)
-            nextOrSaveButton(text: "Add")
+            nextOrSaveButton(text: "Add", action: {})
         }
         .padding(.top, 56)
         .padding(.bottom, 50)

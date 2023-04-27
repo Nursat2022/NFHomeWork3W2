@@ -33,7 +33,7 @@ struct Reminder: View {
             
           choiceGrid()
             
-            nextOrSaveButton(text: "Save")
+            nextOrSaveButton(text: "Save", action: {})
         }
         .padding(.top, 56)
         .padding(.bottom, 50)

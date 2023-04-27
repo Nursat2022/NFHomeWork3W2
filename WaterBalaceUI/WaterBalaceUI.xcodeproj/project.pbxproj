@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C85112A029FA213D00D58851 /* PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C851129F29FA213D00D58851 /* PropertyWrapper.swift */; };
 		C873F1BC29E15C6A006A03B7 /* WaterBalaceUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C873F1BB29E15C6A006A03B7 /* WaterBalaceUIApp.swift */; };
 		C873F1BE29E15C6A006A03B7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C873F1BD29E15C6A006A03B7 /* ContentView.swift */; };
 		C873F1C029E15C6B006A03B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C873F1BF29E15C6B006A03B7 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C851129F29FA213D00D58851 /* PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrapper.swift; sourceTree = "<group>"; };
 		C873F1B829E15C6A006A03B7 /* WaterBalaceUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaterBalaceUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C873F1BB29E15C6A006A03B7 /* WaterBalaceUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterBalaceUIApp.swift; sourceTree = "<group>"; };
 		C873F1BD29E15C6A006A03B7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				C873F1F329E2B5DD006A03B7 /* TheGoal.swift */,
 				C873F1F529E2B7BB006A03B7 /* Reminder.swift */,
 				C873F1F729E2BC15006A03B7 /* WaterIntake.swift */,
+				C851129F29FA213D00D58851 /* PropertyWrapper.swift */,
 			);
 			path = WaterBalaceUI;
 			sourceTree = "<group>";
@@ -166,6 +169,7 @@
 			files = (
 				C873F1EC29E283D4006A03B7 /* Main.swift in Sources */,
 				C873F1BE29E15C6A006A03B7 /* ContentView.swift in Sources */,
+				C85112A029FA213D00D58851 /* PropertyWrapper.swift in Sources */,
 				C873F1F629E2B7BB006A03B7 /* Reminder.swift in Sources */,
 				C873F1F029E2A34B006A03B7 /* History.swift in Sources */,
 				C873F1CC29E15E74006A03B7 /* WhatIsYourGoal.swift in Sources */,

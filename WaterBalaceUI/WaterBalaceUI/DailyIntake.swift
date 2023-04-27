@@ -13,7 +13,7 @@ struct DailyIntake: View {
         VStack {
             Headers(text: "Daily intake?")
             TextFieldForVolume(volume: $volume)
-            nextOrSaveButton(text: "Save")
+            nextOrSaveButton(text: "Save", action: {})
         }
         .padding(.top, 108)
         .padding(.bottom, 50)

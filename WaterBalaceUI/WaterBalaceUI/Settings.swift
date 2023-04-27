@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+class SettingsData {
+    @Published var dailyIntake = 0
+//    @Published var goal: 
+}
+
 struct Settings: View {
     var body: some View {
         VStack(spacing: 31) {

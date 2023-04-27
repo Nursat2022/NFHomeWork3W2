@@ -8,18 +8,27 @@
 import SwiftUI
 
 struct WhatIsYourGoal: View {
-    @State var selected = ""
+    @State var selected = "One"
+    @State var remindMe = false
     var body: some View {
-        VStack {
-            Headers(text: "What is your goal?")
-            
-            Buttons(selected: $selected)
-            
-            nextOrSaveButton(text: "Next")
+        NavigationView {
+            VStack {
+                Headers(text: "What is your goal?")
+                
+                Buttons(selected: $selected)
+                
+                nextOrSaveButton(text: "Next") {
+                    remindMe = true
+                }
+                
+                NavigationLink(isActive: $remindMe) {
+                    ReminderMe()
+                } label: {}
+            }
+            .padding(.top, 108)
+            .padding(.bottom, 50)
+            .ignoresSafeArea()
         }
-        .padding(.top, 108)
-        .padding(.bottom, 50)
-        .ignoresSafeArea()
     }
 }
 
@@ -29,38 +38,36 @@ struct Buttons: View {
     
     var body: some View {
         VStack {
-            VStack {
-                VStack(spacing: 14) {
-                    ForEach(goals, id: \.self) { goal in
-                        Button(action: { selected = goal }) {
-                            HStack {
-                                Text("Goal Number \(goal)")
-                                    .fontWeight(.semibold)
+            VStack(spacing: 14) {
+                ForEach(goals, id: \.self) { goal in
+                    Button(action: { selected = goal }) {
+                        HStack {
+                            Text("Goal Number \(goal)")
+                                .fontWeight(.semibold)
+                            
+                            Spacer()
+                            
+                            ZStack {
+                                Circle().stroke(Color.blue, lineWidth: 2).frame(width: 20, height: 20)
                                 
-                                Spacer()
-                                
-                                ZStack {
-                                    Circle().stroke(Color.blue, lineWidth: 2).frame(width: 20, height: 20)
-                                    
-                                    if selected == goal {
-                                        Circle().fill(selected == goal ? Color.blue :  Color.red).frame(width: 12, height: 12)
-                                    }
+                                if selected == goal {
+                                    Circle().fill(selected == goal ? Color.blue :  Color.red).frame(width: 12, height: 12)
                                 }
                             }
-                            .foregroundColor(.black)
                         }
-                        .padding(.horizontal, 24)
-                        .frame(width: 320, height: 60)
-                        .background(Color.white)
-                        .cornerRadius(16)
+                        .foregroundColor(.black)
                     }
+                    .padding(.horizontal, 24)
+                    .frame(width: 320, height: 60)
+                    .background(Color.white)
+                    .cornerRadius(16)
                 }
             }
-            .padding(.horizontal, 19)
-            .frame(width: 358, height: 330)
-            .background(Color(red: 212/255, green: 225/255, blue: 248/255))
-            .cornerRadius(16)
         }
+        .padding(.horizontal, 19)
+        .frame(width: 358, height: 330)
+        .background(Color(red: 212/255, green: 225/255, blue: 248/255))
+        .cornerRadius(16)
         
         Spacer()
     }
@@ -68,8 +75,9 @@ struct Buttons: View {
 
 struct nextOrSaveButton: View {
     var text: String
+    var action: () -> ()
     var body: some View {
-        Button(action: {}) {
+        Button(action: action) {
             Text(text)
                 .frame(width: 295, height: 28)
                 .font(.system(size: 22))

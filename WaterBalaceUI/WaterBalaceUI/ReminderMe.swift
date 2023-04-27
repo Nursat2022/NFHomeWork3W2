@@ -10,6 +10,7 @@ import SwiftUI
 struct ReminderMe: View {
     @Binding var state: AppScreenState
     @State var TodailyIntake = false
+    @EnvironmentObject var settingsData: SettingsData
     var body: some View {
         VStack {
 //            Image(systemName: "chevron.left")
@@ -19,6 +20,7 @@ struct ReminderMe: View {
             choiceGrid()
             
             nextOrSaveButton(text: "Next", action: {
+                AppDataAPI.remindMe = settingsData.remindMe
                 TodailyIntake = true
             })
             
@@ -36,7 +38,8 @@ struct ReminderMe: View {
 //struct GoalMain: View {
 
 struct choiceGrid: View {
-    @State private var selected: String = "15 minutes"
+    @EnvironmentObject var settingsData: SettingsData
+    let minutes = [15, 30, 45, 60, 90, 120, 180, 240]
     
     let columns = [
         GridItem(.fixed(157)),
@@ -52,14 +55,9 @@ struct choiceGrid: View {
     
     var body: some View {
         LazyVGrid(columns: columns, spacing: 14) {
-            timeButton(selected: $selected, text: "15 minutes")
-            timeButton(selected: $selected, text: "30 minutes")
-            timeButton(selected: $selected, text: "45 minutes")
-            timeButton(selected: $selected, text: "1 hour")
-            timeButton(selected: $selected, text: "1,5 hour")
-            timeButton(selected: $selected, text: "2 hour")
-            timeButton(selected: $selected, text: "3 hour")
-            timeButton(selected: $selected, text: "4 hour")
+            ForEach(minutes, id: \.self) {minute in
+                timeButton(minute: minute)
+            }
         }
         .padding(.horizontal, 19)
         .frame(width: 358, height: 330)
@@ -71,13 +69,13 @@ struct choiceGrid: View {
 }
 
 struct timeButton: View {
-    @Binding var selected: String
-    var text: String
+    @EnvironmentObject var settingsData: SettingsData
+    var minute: Int
     var body: some View {
         ZStack {
         
-            Button(action: { self.selected = text }) {
-                Text(text)
+            Button(action: { settingsData.remindMe = minute }) {
+                Text(minute.toDateString())
                     .frame(width: 150, height: 60)
             }
 //            .padding(.vertical)
@@ -88,12 +86,24 @@ struct timeButton: View {
             .background(Color.white)
             .cornerRadius(16)
             
-            if selected == text {
+            if settingsData.remindMe == minute {
                 RoundedRectangle(cornerRadius: 16)
                     .stroke(Color.blue, lineWidth: 3)
                     .frame(width: 150, height: 60)
             }
         }
+    }
+}
+
+// MARK: EXTENSIONS
+extension Int {
+    func toDateString() -> String {
+        let hours = self / 60
+        let minutes = self % 60
+        if hours >= 1 {
+            return minutes == 0 ? "\(hours) hour" : "\(hours),\(String(format: "%.0f", (Double(minutes) / 60) * 10)) hour"
+        }
+        return "\(self) minutes"
     }
 }
 

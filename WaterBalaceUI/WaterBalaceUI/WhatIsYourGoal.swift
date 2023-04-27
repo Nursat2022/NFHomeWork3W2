@@ -25,6 +25,7 @@ struct WhatIsYourGoal: View {
                 
                 NavigationLink(isActive: $remindMe) {
                     ReminderMe(state: $state)
+                        .environmentObject(settingsData)
                 } label: {}
             }
             .padding(.top, 108)

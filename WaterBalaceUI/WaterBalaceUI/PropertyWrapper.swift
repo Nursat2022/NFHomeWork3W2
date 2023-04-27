@@ -17,8 +17,8 @@ struct AppDataAPI {
     @AppDataStorage(key: "goal", defaultValue: "One")
     static var goal: String
     
-    @AppDataStorage(key: "remindMe", defaultValue: "15 min")
-    static var remindMe: String
+    @AppDataStorage(key: "remindMe", defaultValue: 15)
+    static var remindMe: Int
 }
 
 @propertyWrapper

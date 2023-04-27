@@ -9,12 +9,15 @@ import SwiftUI
 
 struct DailyIntake: View {
     @Binding var state: AppScreenState
-    @State private var volume = "2400"
+    @EnvironmentObject var settingsData: SettingsData
+    @State var volume = "\(AppDataAPI.dailyIntake)"
     var body: some View {
         VStack {
             Headers(text: "Daily intake?")
             TextFieldForVolume(volume: $volume)
             nextOrSaveButton(text: "Save", action: {
+                AppDataAPI.dailyIntake = Int(volume) ?? 0
+                settingsData.dailyIntake = AppDataAPI.dailyIntake
                 AppDataAPI.isOnboarding = true
                 withAnimation(.spring()) {
                     state = .main
@@ -56,6 +59,6 @@ struct TextFieldForVolume: View {
 
 //struct DailyIntake_Previews: PreviewProvider {
 //    static var previews: some View {
-//        DailyIntake()
+//        DailyIntake(state: $state)
 //    }
 //}

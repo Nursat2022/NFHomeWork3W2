@@ -26,6 +26,7 @@ struct ReminderMe: View {
             
             NavigationLink(isActive: $TodailyIntake) {
                 DailyIntake(state: $state)
+                    .environmentObject(settingsData)
             } label: {}
 
         }

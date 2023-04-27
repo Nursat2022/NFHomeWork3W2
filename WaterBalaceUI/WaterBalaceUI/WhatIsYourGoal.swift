@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WhatIsYourGoal: View {
+    @Binding var state: AppScreenState
     @State var selected = "One"
     @State var remindMe = false
     var body: some View {
@@ -22,7 +23,7 @@ struct WhatIsYourGoal: View {
                 }
                 
                 NavigationLink(isActive: $remindMe) {
-                    ReminderMe()
+                    ReminderMe(state: $state)
                 } label: {}
             }
             .padding(.top, 108)
@@ -109,8 +110,8 @@ struct Headers: View {
     }
 }
 
-struct WhatIsYourGoal_Previews: PreviewProvider {
-    static var previews: some View {
-        WhatIsYourGoal()
-    }
-}
+//struct WhatIsYourGoal_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WhatIsYourGoal()
+//    }
+//}

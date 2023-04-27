@@ -14,25 +14,30 @@ enum AppScreenState {
 
 @main
 struct WaterBalaceUIApp: App {
+    let transition: AnyTransition = .asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading))
     @State var state: AppScreenState
     var isOnboardingSeen: Bool
     
     init() {
         self.isOnboardingSeen = AppDataAPI.isOnboarding
-        switch isOnboardingSeen {
-        case true:
-            self.state = .main
-        case false:
-            self.state = .onboarding
-        }
+            switch isOnboardingSeen {
+            case true:
+                self.state = .main
+            case false:
+                self.state = .onboarding
+            }
     }
+    
     var body: some Scene {
         WindowGroup {
             switch state {
             case .onboarding:
-                WhatIsYourGoal()
+                WhatIsYourGoal(state: $state)
             case .main:
-                Main(ml: 0)
+                withAnimation(.spring()) {
+                    Main(ml: 0)
+                        .transition(transition)
+                }
             }
         }
     }

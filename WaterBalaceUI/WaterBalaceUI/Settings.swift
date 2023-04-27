@@ -9,7 +9,7 @@ import SwiftUI
 
 class SettingsData {
     @Published var dailyIntake = 0
-//    @Published var goal: 
+    @Published var goal: String = "One"
 }
 
 struct Settings: View {

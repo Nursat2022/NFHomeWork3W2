@@ -8,12 +8,18 @@
 import SwiftUI
 
 struct DailyIntake: View {
+    @Binding var state: AppScreenState
     @State private var volume = "2400"
     var body: some View {
         VStack {
             Headers(text: "Daily intake?")
             TextFieldForVolume(volume: $volume)
-            nextOrSaveButton(text: "Save", action: {})
+            nextOrSaveButton(text: "Save", action: {
+                AppDataAPI.isOnboarding = true
+                withAnimation(.spring()) {
+                    state = .main
+                }
+            })
         }
         .padding(.top, 108)
         .padding(.bottom, 50)
@@ -48,8 +54,8 @@ struct TextFieldForVolume: View {
     }
 }
 
-struct DailyIntake_Previews: PreviewProvider {
-    static var previews: some View {
-        DailyIntake()
-    }
-}
+//struct DailyIntake_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DailyIntake()
+//    }
+//}

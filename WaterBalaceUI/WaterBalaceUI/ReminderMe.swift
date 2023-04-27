@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ReminderMe: View {
-    
+    @Binding var state: AppScreenState
+    @State var TodailyIntake = false
     var body: some View {
         VStack {
 //            Image(systemName: "chevron.left")
@@ -17,7 +18,14 @@ struct ReminderMe: View {
             
             choiceGrid()
             
-            nextOrSaveButton(text: "Next", action: {})
+            nextOrSaveButton(text: "Next", action: {
+                TodailyIntake = true
+            })
+            
+            NavigationLink(isActive: $TodailyIntake) {
+                DailyIntake(state: $state)
+            } label: {}
+
         }
         .padding(.top, 108)
         .padding(.bottom, 50)
@@ -28,7 +36,7 @@ struct ReminderMe: View {
 //struct GoalMain: View {
 
 struct choiceGrid: View {
-    @State private var selected: String = ""
+    @State private var selected: String = "15 minutes"
     
     let columns = [
         GridItem(.fixed(157)),
@@ -89,8 +97,8 @@ struct timeButton: View {
     }
 }
 
-struct ReminderMe_Previews: PreviewProvider {
-    static var previews: some View {
-        ReminderMe()
-    }
-}
+//struct ReminderMe_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ReminderMe()
+//    }
+//}

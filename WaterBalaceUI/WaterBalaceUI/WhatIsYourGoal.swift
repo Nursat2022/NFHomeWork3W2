@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WhatIsYourGoal: View {
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var settingsData: SettingsData
     @State var remindMe = false
     var body: some View {
@@ -17,9 +18,14 @@ struct WhatIsYourGoal: View {
                 
                 Buttons()
                 
-                nextOrSaveButton(text: "Next") {
+                nextOrSaveButton(text: AppDataAPI.isOnboarding ? "Save" : "Next") {
                     AppDataAPI.goal = settingsData.goal
-                    remindMe = true
+                    if !AppDataAPI.isOnboarding {
+                        remindMe = true
+                    }
+                    else {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
                 }
                 
                 NavigationLink(isActive: $remindMe) {
@@ -111,8 +117,8 @@ struct Headers: View {
     }
 }
 
-//struct WhatIsYourGoal_Previews: PreviewProvider {
-//    static var previews: some View {
-//        WhatIsYourGoal()
-//    }
-//}
+struct WhatIsYourGoal_Previews: PreviewProvider {
+    static var previews: some View {
+        WhatIsYourGoal()
+    }
+}

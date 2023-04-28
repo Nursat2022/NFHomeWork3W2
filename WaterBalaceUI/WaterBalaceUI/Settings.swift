@@ -24,7 +24,6 @@ struct Settings: View {
                 .foregroundColor(Color(red: 5/255, green: 165/255, blue: 239/255))
             
             List {
-                
                 NavigationLink {
                     DailyIntake()
                         .navigationBarBackButtonHidden(true)
@@ -39,6 +38,7 @@ struct Settings: View {
                     }
                 }
                 .listSectionSeparator(.hidden, edges: .top)
+                
                 NavigationLink {
                     WhatIsYourGoal()
                 } label: {

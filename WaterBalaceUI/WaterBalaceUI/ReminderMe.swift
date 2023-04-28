@@ -12,8 +12,6 @@ struct ReminderMe: View {
     @EnvironmentObject var settingsData: SettingsData
     var body: some View {
         VStack {
-//            Image(systemName: "chevron.left")
-            
             Headers(text: "Remind me each")
             
             choiceGrid()
@@ -34,8 +32,6 @@ struct ReminderMe: View {
         .ignoresSafeArea()
     }
 }
-
-//struct GoalMain: View {
 
 struct choiceGrid: View {
     @EnvironmentObject var settingsData: SettingsData
@@ -107,8 +103,8 @@ extension Int {
     }
 }
 
-//struct ReminderMe_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ReminderMe()
-//    }
-//}
+struct ReminderMe_Previews: PreviewProvider {
+    static var previews: some View {
+        ReminderMe()
+    }
+}

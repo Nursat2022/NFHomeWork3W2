@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct DailyIntake: View {
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var settingsData: SettingsData
+    @State var toMain = false
     @State var volume = "\(String(format: "%.0f", AppDataAPI.dailyIntake))"
     var body: some View {
         VStack {
@@ -17,11 +19,19 @@ struct DailyIntake: View {
             nextOrSaveButton(text: "Save", action: {
                 AppDataAPI.dailyIntake = Double(volume) ?? 0
                 settingsData.dailyIntake = AppDataAPI.dailyIntake
-                AppDataAPI.isOnboarding = true
-                withAnimation(.spring()) {
-//                    state.state = .main
+                if AppDataAPI.isOnboarding {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+                else {
+                    AppDataAPI.isOnboarding = true
+                    toMain = true
                 }
             })
+            NavigationLink(isActive: $toMain) {
+                Main()
+                    .navigationBarBackButtonHidden(true)
+            } label: {}
+
         }
         .padding(.top, 108)
         .padding(.bottom, 50)

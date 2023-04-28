@@ -123,7 +123,8 @@ struct Main: View {
                     } label: {}
                 }
                 .onAppear {
-                    ml = AppDataAPI.IntakeForToday / 1000
+                    mx = settingsData.dailyIntake / 1000
+                    ml = settingsData.IntakeForToday / 1000
                 }
                 .padding(.top, 14)
                 .padding(.bottom, 20)

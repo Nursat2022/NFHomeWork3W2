@@ -49,14 +49,15 @@ struct Settings: View {
                     }
                 }
                 
-                HStack {
-                    Text("Reminder")
-                    Spacer()
-                        .foregroundColor(Color(red: 60/255, green: 60/255, blue: 67/255, opacity: 0.6))
+                NavigationLink {
+                    ReminderMe()
+                } label: {
+                    HStack {
+                        Text("Reminder")
+                        Spacer()
+                            .foregroundColor(Color(red: 60/255, green: 60/255, blue: 67/255, opacity: 0.6))
+                    }
                 }
-                .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 11, trailing: 16))
-                .padding(.top, 20)
-                
             }
             .listStyle(.plain)
         }

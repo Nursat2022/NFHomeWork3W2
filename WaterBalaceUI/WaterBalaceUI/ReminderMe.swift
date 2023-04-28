@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ReminderMe: View {
+    @Environment(\.presentationMode) var presentationMode
     @State var TodailyIntake = false
     @EnvironmentObject var settingsData: SettingsData
     var body: some View {
@@ -16,9 +17,15 @@ struct ReminderMe: View {
             
             choiceGrid()
             
-            nextOrSaveButton(text: "Next", action: {
+            nextOrSaveButton(text: AppDataAPI.isOnboarding ? "Save" : "Next", action: {
                 AppDataAPI.remindMe = settingsData.remindMe
-                TodailyIntake = true
+                
+                if AppDataAPI.isOnboarding {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+                else {
+                    TodailyIntake = true
+                }
             })
             
             NavigationLink(isActive: $TodailyIntake) {

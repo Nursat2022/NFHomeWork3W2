@@ -22,10 +22,10 @@ struct Settings: View {
                 .fontWeight(.black)
                 .foregroundColor(Color(red: 5/255, green: 165/255, blue: 239/255))
             
-            NavigationView {
                 List {
+                    
                     NavigationLink {
-                        WaterIntake()
+                        DailyIntake()
                     } label: {
                         HStack {
                             Text("Daily Intake Level")
@@ -36,7 +36,7 @@ struct Settings: View {
                             .foregroundColor(Color(red: 60/255, green: 60/255, blue: 67/255, opacity: 0.6))
                         }
                     }
-
+                        .listSectionSeparator(.hidden, edges: .top)
                     NavigationLink {
                         WhatIsYourGoal()
                     } label: {
@@ -56,9 +56,9 @@ struct Settings: View {
                     }
                     .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 11, trailing: 16))
                     .padding(.top, 20)
+                    
                 }
                 .listStyle(.plain)
-            }
         }
         .padding(.top, 56)
         .padding(.bottom, 50)

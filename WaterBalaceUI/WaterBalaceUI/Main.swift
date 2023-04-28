@@ -148,6 +148,7 @@ struct Main: View {
                         Text("History")
                     }
                     .tag(3)
+                
             }
         }
     }

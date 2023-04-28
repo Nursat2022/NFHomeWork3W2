@@ -16,6 +16,7 @@ enum AppScreenState {
 struct WaterBalaceUIApp: App {
     @StateObject var settingsData: SettingsData = SettingsData()
     let transition: AnyTransition = .asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading))
+    
     @State var state: AppScreenState
     var isOnboardingSeen: Bool
     
@@ -33,7 +34,7 @@ struct WaterBalaceUIApp: App {
         WindowGroup {
             switch state {
             case .onboarding:
-                WhatIsYourGoal(state: $state)
+                WhatIsYourGoal()
                     .environmentObject(settingsData)
             case .main:
                 withAnimation(.spring()) {

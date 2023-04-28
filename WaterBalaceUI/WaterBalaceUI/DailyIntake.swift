@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct DailyIntake: View {
-    @Binding var state: AppScreenState
     @EnvironmentObject var settingsData: SettingsData
     @State var volume = "\(String(format: "%.0f", AppDataAPI.dailyIntake))"
     var body: some View {
@@ -20,7 +19,7 @@ struct DailyIntake: View {
                 settingsData.dailyIntake = AppDataAPI.dailyIntake
                 AppDataAPI.isOnboarding = true
                 withAnimation(.spring()) {
-                    state = .main
+//                    state.state = .main
                 }
             })
         }

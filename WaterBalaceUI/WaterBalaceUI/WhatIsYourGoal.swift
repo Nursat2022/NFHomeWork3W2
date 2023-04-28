@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct WhatIsYourGoal: View {
-    @Binding var state: AppScreenState
     @EnvironmentObject var settingsData: SettingsData
     @State var remindMe = false
     var body: some View {
@@ -24,7 +23,7 @@ struct WhatIsYourGoal: View {
                 }
                 
                 NavigationLink(isActive: $remindMe) {
-                    ReminderMe(state: $state)
+                    ReminderMe()
                         .environmentObject(settingsData)
                 } label: {}
             }

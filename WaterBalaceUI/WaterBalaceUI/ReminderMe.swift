@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ReminderMe: View {
-    @Binding var state: AppScreenState
     @State var TodailyIntake = false
     @EnvironmentObject var settingsData: SettingsData
     var body: some View {
@@ -25,7 +24,7 @@ struct ReminderMe: View {
             })
             
             NavigationLink(isActive: $TodailyIntake) {
-                DailyIntake(state: $state)
+                DailyIntake()
                     .environmentObject(settingsData)
             } label: {}
 

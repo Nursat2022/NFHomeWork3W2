@@ -215,6 +215,16 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    func displayMinAndSeconds() -> String {
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: self)
+        let minute = calendar.component(.minute, from: self)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        let stringFormat = formatter.string(from: self)
+        return stringFormat
+    }
+    
     func suffix() -> String {
         let dayOfMonth = Calendar.current.component(.day, from: self)
         switch dayOfMonth {

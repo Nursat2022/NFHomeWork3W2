@@ -18,9 +18,7 @@ struct History: View {
             
             List {
                 Section(header: Text("Today")) {
-                    volumeAndDate(volume: 250, date: "12:13")
-                    volumeAndDate(volume: 200, date: "14:10")
-                    volumeAndDate(volume: 50, date: "15:13")
+                    volumeAndDate(volume: 250, date: Date().displayMinAndSeconds())
                     volumeAndDate(volume: 300, date: "19:10")
                 }
                 .listSectionSeparator(.hidden, edges: .top)
@@ -46,9 +44,14 @@ struct History: View {
         .ignoresSafeArea()    }
 }
 
-struct History_Previews: PreviewProvider {
-    static var previews: some View {
-        History()
+struct historyForDay: View {
+    var body: some View {
+        Section(header: Text("Today")) {
+            volumeAndDate(volume: 250, date: "12:13")
+            volumeAndDate(volume: 200, date: "14:10")
+            volumeAndDate(volume: 50, date: "15:13")
+            volumeAndDate(volume: 300, date: "19:10")
+        }
     }
 }
 
@@ -63,5 +66,12 @@ struct volumeAndDate: View {
             Text(date)
                 .foregroundColor(Color(red: 60/255, green: 60/255, blue: 67/255, opacity: 0.6))
         }
+    }
+}
+
+
+struct History_Previews: PreviewProvider {
+    static var previews: some View {
+        History()
     }
 }

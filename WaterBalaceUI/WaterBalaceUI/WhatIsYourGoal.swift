@@ -14,6 +14,13 @@ struct WhatIsYourGoal: View {
     var body: some View {
         NavigationView {
             VStack {
+                if AppDataAPI.isOnboarding {
+                    Text("THE GOAL")
+                        .font(.system(size: 17))
+                        .italic()
+                        .fontWeight(.black)
+                        .foregroundColor(Color(red: 5/255, green: 165/255, blue: 239/255))
+                }
                 Headers(text: "What is your goal?")
                 
                 Buttons()
@@ -33,7 +40,7 @@ struct WhatIsYourGoal: View {
                         .environmentObject(settingsData)
                 } label: {}
             }
-            .padding(.top, 108)
+            .padding(.top, AppDataAPI.isOnboarding ? 56 : 108)
             .padding(.bottom, 50)
             .ignoresSafeArea()
         }
@@ -102,11 +109,13 @@ struct nextOrSaveButton: View {
 struct Headers: View {
     var text: String
     var body: some View {
-        Text("WATER BALANCE")
-            .font(.system(size: 24))
-            .italic()
-            .fontWeight(.bold)
-            .foregroundColor(Color(red: 5/255, green: 165/255, blue: 239/255))
+        if !AppDataAPI.isOnboarding {
+            Text("WATER BALANCE")
+                .font(.system(size: 24))
+                .italic()
+                .fontWeight(.bold)
+                .foregroundColor(Color(red: 5/255, green: 165/255, blue: 239/255))
+        }
         
         Spacer()
         

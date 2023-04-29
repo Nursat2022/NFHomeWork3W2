@@ -26,7 +26,7 @@ struct Settings: View {
             List {
                 NavigationLink {
                     DailyIntake()
-                        .navigationBarBackButtonHidden(true)
+//                        .navigationBarBackButtonHidden(true)
                 } label: {
                     HStack {
                         Text("Daily Intake Level")

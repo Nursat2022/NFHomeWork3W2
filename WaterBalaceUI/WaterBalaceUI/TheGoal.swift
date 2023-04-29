@@ -11,19 +11,12 @@ struct TheGoal: View {
     @State private var selected = ""
     var body: some View {
         VStack {
-            HStack {
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(Color(red: 5/255, green: 165/255, blue: 239/255))
-                        .font(.system(size: 23))
-                Spacer()
-                    Text("THE GOAL")
-                        .font(.system(size: 17))
-                        .italic()
-                        .fontWeight(.black)
-                        .foregroundColor(Color(red: 5/255, green: 165/255, blue: 239/255))
-                Spacer(minLength: 140)
-            }
-            .padding(.horizontal, 9)
+            Text("THE GOAL")
+                .font(.system(size: 17))
+                .italic()
+                .fontWeight(.black)
+                .foregroundColor(Color(red: 5/255, green: 165/255, blue: 239/255))
+            //            .padding(.horizontal, 9)
             Spacer()
             
             Text("What is your goal?")

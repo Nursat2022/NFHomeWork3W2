@@ -13,6 +13,13 @@ struct ReminderMe: View {
     @EnvironmentObject var settingsData: SettingsData
     var body: some View {
         VStack {
+            if AppDataAPI.isOnboarding {
+                Text("REMINDER")
+                    .font(.system(size: 17))
+                    .italic()
+                    .fontWeight(.black)
+                    .foregroundColor(Color(red: 5/255, green: 165/255, blue: 239/255))
+            }
             Headers(text: "Remind me each")
             
             choiceGrid()
@@ -34,7 +41,7 @@ struct ReminderMe: View {
             } label: {}
 
         }
-        .padding(.top, 108)
+        .padding(.top, AppDataAPI.isOnboarding ? 56 : 108)
         .padding(.bottom, 50)
         .ignoresSafeArea()
     }
@@ -110,8 +117,8 @@ extension Int {
     }
 }
 
-struct ReminderMe_Previews: PreviewProvider {
-    static var previews: some View {
-        ReminderMe()
-    }
-}
+//struct ReminderMe_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ReminderMe()
+//    }
+//}

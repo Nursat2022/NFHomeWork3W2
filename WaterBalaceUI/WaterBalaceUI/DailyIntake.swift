@@ -14,6 +14,13 @@ struct DailyIntake: View {
     @State var volume = "\(String(format: "%.0f", AppDataAPI.dailyIntake))"
     var body: some View {
         VStack {
+            if AppDataAPI.isOnboarding {
+                Text("WATER")
+                    .font(.system(size: 17))
+                    .italic()
+                    .fontWeight(.black)
+                    .foregroundColor(Color(red: 5/255, green: 165/255, blue: 239/255))
+            }
             Headers(text: "Daily intake?")
             TextFieldForVolume(volume: $volume)
             nextOrSaveButton(text: "Save", action: {
@@ -33,7 +40,7 @@ struct DailyIntake: View {
             } label: {}
 
         }
-        .padding(.top, 108)
+        .padding(.top, AppDataAPI.isOnboarding ? 56 : 108)
         .padding(.bottom, 50)
         .ignoresSafeArea()
     }

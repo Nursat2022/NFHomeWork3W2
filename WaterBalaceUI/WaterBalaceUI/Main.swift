@@ -29,6 +29,7 @@ struct Main: View {
         var arr: [String] = UserDefaults.standard.object(forKey: "historyDays") as? [String] ?? []
         if !arr.contains(today) {
             arr.append(today)
+            AppDataAPI.IntakeForToday = 0
         }
         UserDefaults.standard.setValue(arr, forKey: "historyDays")
     }
@@ -129,8 +130,8 @@ struct Main: View {
                     } label: {}
                 }
                 .onAppear {
-                    mx = settingsData.dailyIntake / 1000
-                    ml = settingsData.IntakeForToday / 1000
+                    mx = AppDataAPI.dailyIntake / 1000
+                    ml = AppDataAPI.IntakeForToday / 1000
                 }
                 .padding(.top, 14)
                 .padding(.bottom, 20)
@@ -218,8 +219,6 @@ extension Date {
     
     func displayMinAndSeconds() -> String {
         let calendar = Calendar.current
-        let hour = calendar.component(.hour, from: self)
-        let minute = calendar.component(.minute, from: self)
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         let stringFormat = formatter.string(from: self)

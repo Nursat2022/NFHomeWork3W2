@@ -32,7 +32,7 @@ struct History: View {
             
             List {
                 ForEach(viewModel.days, id: \.self) {day in
-                    Section(header: Text(day)) {
+                    Section(header: Text(day == viewModel.days.last ? "Today" : day)) {
                         volumesAndTime(day: day)
                     }
                     .listSectionSeparator(.hidden, edges: .top)

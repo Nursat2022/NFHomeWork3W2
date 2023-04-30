@@ -22,6 +22,9 @@ struct AppDataAPI {
     
     @AppDataStorage(key: "IntakeForToday", defaultValue: 0)
     static var IntakeForToday: Double
+
+    @AppDataStorage(key: Date().getDay(), defaultValue: historyForDay())
+    static var history: historyForDay
 }
 
 @propertyWrapper

@@ -88,8 +88,6 @@ struct timeButton: View {
                 Text(minute.toDateString())
                     .frame(width: 150, height: 60)
             }
-//            .padding(.vertical)
-//            .padding(.horizontal, 24)
             .fontWeight(.semibold)
             .foregroundColor(.black)
             .frame(width: 150, height: 60)

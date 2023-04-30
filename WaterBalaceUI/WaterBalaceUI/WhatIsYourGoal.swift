@@ -34,7 +34,6 @@ struct WhatIsYourGoal: View {
                         self.presentationMode.wrappedValue.dismiss()
                     }
                 }
-                
                 NavigationLink(isActive: $remindMe) {
                     ReminderMe()
                         .environmentObject(settingsData)

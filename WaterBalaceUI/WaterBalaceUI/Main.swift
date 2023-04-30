@@ -10,21 +10,28 @@ import SwiftUI
 struct Main: View {
     var w = CGFloat(160)
     var h = CGFloat(160)
+     
+    var today: String
     @State var mx: Double = AppDataAPI.dailyIntake / 1000
     @State var ml: Double = AppDataAPI.IntakeForToday / 1000
     @State var level: Int = 0
     @State var AddWaterIntake = false
     @EnvironmentObject var settingsData: SettingsData
     @State var date = Date()
-    
     @State var progress1: CGFloat = 0
-    
     @State var phase1: CGFloat = 0.0
-    
     @State var progress2: CGFloat = 0
     @State var phase2: CGFloat = 0.9
-    
     @State private var selectedTab = 1
+    
+    init() {
+        today = Date().getDay()
+        var arr: [String] = UserDefaults.standard.object(forKey: "historyDays") as? [String] ?? []
+        if !arr.contains(today) {
+            arr.append(today)
+        }
+        UserDefaults.standard.setValue(arr, forKey: "historyDays")
+    }
     
     var text: String {
         switch level {
@@ -104,7 +111,6 @@ struct Main: View {
                                     }
                                 }
                             }
-//                            Text("Monday, 25th of November")
                             Text("\(date.dateToString())")
                         }
                         
@@ -118,7 +124,7 @@ struct Main: View {
                         AddWaterIntake = true
                     }
                     
-                    NavigationLink(isActive: $AddWaterIntake) {
+                NavigationLink(isActive: $AddWaterIntake) {
                         WaterIntake()
                     } label: {}
                 }
@@ -156,7 +162,6 @@ struct Main: View {
     
     var phrases: some View {
         VStack {
-            
             Text(text)
                 .font(.system(size: 36))
                 .fontWeight(.semibold)
@@ -165,12 +170,7 @@ struct Main: View {
     }
 }
 
-func getProgress(level: Int) -> CGFloat {
-    return CGFloat(level) / CGFloat(100)
-}
-
-
-
+// MARK: WATER WAVE
 struct waterWave: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -206,8 +206,9 @@ struct waterWave: Shape {
     }
 }
 
+
+// MARK: EXTENSIONS -> DATE
 extension Date {
-    
     func dateToString() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -233,6 +234,12 @@ extension Date {
         case 3, 23: return "rd"
         default: return "th"
         }
+    }
+    
+    func getDay() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.YY"
+        return formatter.string(from: self)
     }
 }
 

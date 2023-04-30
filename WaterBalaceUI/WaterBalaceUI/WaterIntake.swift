@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct WaterIntake: View {
+    var date = Date()
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var settingsData: SettingsData
+    @State var history: historyForDay = historyForDay()
     @State var volume = "0"
     var body: some View {
         VStack {
@@ -18,6 +20,10 @@ struct WaterIntake: View {
             nextOrSaveButton(text: "Add", action: {
                 AppDataAPI.IntakeForToday += Double(volume) ?? 0
                 settingsData.IntakeForToday = AppDataAPI.IntakeForToday
+                history = getHistoryForDay(day: date.getDay())
+                history.time.append(date.displayMinAndSeconds())
+                history.waterIntake.append(Double(volume) ?? 0)
+                setHistoryToUserDefaults(history: history, day: date.getDay())
                 self.presentationMode.wrappedValue.dismiss()
             })
         }

@@ -38,7 +38,7 @@ struct WaterBalaceUIApp: App {
                     .environmentObject(settingsData)
             case .main:
                 withAnimation(.spring()) {
-                    Main(ml: 0)
+                    Main()
                         .transition(transition)
                         .environmentObject(settingsData)
                 }

@@ -20,6 +20,7 @@ class HistoryViewModel: ObservableObject {
 }
 
 struct History: View {
+    @ObservedObject var viewModel = HistoryViewModel()
     var historyDays = UserDefaults.standard.object(forKey: "historyDays") as? [String] ?? []
     var body: some View {
         VStack(spacing: 31) {
@@ -30,7 +31,7 @@ struct History: View {
                 .foregroundColor(Color(red: 5/255, green: 165/255, blue: 239/255))
             
             List {
-                ForEach(historyDays, id: \.self) {day in
+                ForEach(viewModel.days, id: \.self) {day in
                     Section(header: Text(day)) {
                         volumesAndTime(day: day)
                     }
@@ -42,9 +43,6 @@ struct History: View {
             }
             .listStyle(.plain)
         }
-//        .onAppear {
-//            historyDays = AppDataAPI.historyDays
-//        }
         .padding(.top, 56)
         .padding(.bottom, 50)
         .ignoresSafeArea()
@@ -54,7 +52,7 @@ struct History: View {
 
 struct volumesAndTime: View {
     var day: String
-    @State var history: historyForDay
+    var history: historyForDay
     
     init(day: String) {
         self.day = day
